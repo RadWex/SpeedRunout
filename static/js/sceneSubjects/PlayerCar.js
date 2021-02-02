@@ -50,7 +50,7 @@ function PlayerCar(scene, camera) {
     const radius = 2;
     var loader = new THREE.ColladaLoader();
 
-    loader.load('car.dae', function(collada) {
+    loader.load(car_url, function(collada) {
         model = collada.scene;
         model.position.set(0, 0, 5);
         model.scale.x = model.scale.y = model.scale.z = 0.07;
