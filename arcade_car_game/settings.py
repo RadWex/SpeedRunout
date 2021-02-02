@@ -25,7 +25,7 @@ SECRET_KEY = '6y+__@9$p(vm#5qb!$ad7y@!@==10exj)k)_xovn%4_^vlzz@='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['umbrelloo.herokuapp.com',
+ALLOWED_HOSTS = ['speed-runout.herokuapp.com',
                  '127.0.0.1',
                  'localhost']
 
