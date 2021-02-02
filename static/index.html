@@ -32,6 +32,11 @@
   <body>
     <canvas id="canvas"></canvas>
 
+    <script>
+      var modelsURL = "{% static 'models/' %}";
+      var texturesURL = "{% static 'textures/' %}";
+    </script>
+
     <script
       type="text/javascript"
       src="{% static 'lib/materialize.min.js' %}"
@@ -49,9 +54,5 @@
     <script src="{% static 'js/SceneManager.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 
-    <script>
-      var car_url = "{% static 'models/car.DAE' %}";
-      var road_url = "{% static 'textures/road1.jpg' %}";
-    </script>
   </body>
 </html>

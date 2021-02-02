@@ -47,7 +47,7 @@ function Road(scene) {
         }
     }
 
-    const Texture = new THREE.TextureLoader().load(road_url);
+    const Texture = new THREE.TextureLoader().load((texturesURL + "road1.jpg"));
     Texture.wrapS = THREE.RepeatWrapping;
     Texture.wrapT = THREE.RepeatWrapping;
     Texture.anisotropy = 8;
