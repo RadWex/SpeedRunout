@@ -1,15 +1,17 @@
-#!/usr/bin/groovy
+#!/usr/bin/bash
 
-node {
-  stage 'Update Python Modules'
-
-  // Create a virtualenv in this folder, and install or upgrade packages
-  sh 'virtualenv env && source env/bin/activate && pip install --upgrade -r requirements.txt'
-  
-  stage 'Test'
-  // Invoke Django's tests
-  sh 'source env/bin/activate && python ./manage.py runtests'
-
-  stage 'Deploy'
-  sh 'mvn heroku:deploy'
+pipeline {
+    agent { docker { image 'python:3.9.1' } }
+    stages {
+        stage('Build') {
+            steps {
+              sh 'cd ./&&python3 -m venv env && . env/bin/activate && pip3 install --upgrade -r requirements.txt'
+            }
+        }
+        stage('Test') {
+            steps {
+              sh '. env/bin/activate && python ./manage.py runtests'
+            }
+        }
+    }
 }
