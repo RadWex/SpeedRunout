@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-              sh '. env/bin/activate && python ./manage.py runtests'
+              sh '. env/bin/activate && python ./manage.py test'
             }
         }
     }
