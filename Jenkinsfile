@@ -18,7 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
               sh 'heroku git:remote -a speed-runout'
-              sh 'git push https://${HEROKU_MAIL}:${HEROKU_API_KEY}@git.heroku.com/speed-runout.git main -f'
+              sh 'git push -f https://${HEROKU_MAIL}:${HEROKU_API_KEY}@git.heroku.com/speed-runout.git HEAD:main'
             }
         }
     }
