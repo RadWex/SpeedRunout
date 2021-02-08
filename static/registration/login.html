@@ -21,7 +21,7 @@
         /></a>
         <div class="search-container"></div>
         {% if user.is_authenticated %}
-        <form action="{% url 'home' %}">
+        <form action="{% url 'game' %}">
           <button>Graj</button>
         </form>
         {% else %}
@@ -34,7 +34,7 @@
 
     <div
       class="parallax"
-      style="background-image: url('{% static '/images/tul.JPG' %}')"
+      style="background-image: url('{% static 'images/tul.jpg' %}')"
     >
       <div class="central-container">
         <form class="login" method="POST">
