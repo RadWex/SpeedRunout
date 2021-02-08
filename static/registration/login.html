@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Logowanie</title>
+    <link rel="stylesheet" href="{% static 'registration/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'registration/menu_bar.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="{% url 'index' %}"
+          ><img src="{% static 'images/logo.png' %}"
+        /></a>
+        <div class="search-container"></div>
+        {% if user.is_authenticated %}
+        <form action="{% url 'home' %}">
+          <button>Graj</button>
+        </form>
+        {% else %}
+        <form action="{% url 'login' %}">
+          <button>Logowanie</button>
+        </form>
+        {% endif %}
+      </nav>
+    </header>
+
+    <div class="parallax">
+      <div class="central-container">
+        <form class="login" method="POST">
+          {% csrf_token %} {% if form.errors %}
+          <div class="error">
+            <p>Błędne hasło lub nazwa użytkownika!</p>
+          </div>
+          {% endif %}
+          <label for="name"><b>Nazwa użytkownika</b></label>
+          <input
+            type="input"
+            class="form-control"
+            name="username"
+            id="inputEmail"
+            placeholder="Username"
+            required
+          />
+          <label for="name"><b>Hasło</b></label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="inputPass"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Zaloguj</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p style="color: white">Copyright &copy; 2020 - Fabryka Inżyniera</p>
+    </footer>
+  </body>
+</html>
