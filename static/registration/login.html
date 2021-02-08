@@ -32,7 +32,10 @@
       </nav>
     </header>
 
-    <div class="parallax">
+    <div
+      class="parallax"
+      style="background-image: url('{% static '/images/tul.JPG' %}')"
+    >
       <div class="central-container">
         <form class="login" method="POST">
           {% csrf_token %} {% if form.errors %}
