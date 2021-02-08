@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
 pipeline {
-    agent { docker { image 'python:3.9.1' } }
+    agent { dockerfile {args '-e HEROKU_API_KEY=${env.HEROKU_API_KEY} -e HEROKU_MAIL=${env.HEROKU_MAIL}'}
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -11,6 +13,12 @@ pipeline {
         stage('Test') {
             steps {
               sh '. env/bin/activate && python ./manage.py test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+              sh 'heroku git:remote -a speed-runout'
+              sh 'git push https://${HEROKU_MAIL}:${HEROKU_API_KEY}@git.heroku.com/speed-runout.git main -f'
             }
         }
     }
