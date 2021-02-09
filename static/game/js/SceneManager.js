@@ -14,8 +14,6 @@ function SceneManager(canvas) {
 
     function buildScene() {
         const scene = new THREE.Scene();
-        //scene.background = new THREE.Color(0xffff00);
-
         return scene;
     }
 
@@ -51,6 +49,7 @@ function SceneManager(canvas) {
             new PlayerCar(scene, camera),
             new EnemyCar(scene),
             new Canister(scene),
+            new CrashBarrier(scene),
             new Road(scene),
             new Ground(scene)
         ];

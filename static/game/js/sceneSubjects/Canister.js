@@ -1,7 +1,7 @@
-function Canister(scene, camera) {
+function Canister(scene) {
     var loader = new THREE.ColladaLoader();
 
-    loader.load(modelsURL + "kanister.dae", function(collada) {
+    loader.load(modelsURL + "canister.dae", function(collada) {
         kanister = collada.scene;
         rand_position = Math.floor(Math.random() * 6) + 1;;
         switch (rand_position) {
@@ -37,17 +37,8 @@ function Canister(scene, camera) {
         kd = inputManager.keys.down.down;
         kl = inputManager.keys.left.down;
         kr = inputManager.keys.right.down;
-        if (ku) {
-            kanister.position.y -= speed * multiply_speed_1_kanister * object_speed;
-            kanister.position.z += speed * multiply_speed_2 * object_speed;
-        } else {
-            kanister.position.y -= speed * multiply_speed_1_kanister * object_speed;
-            kanister.position.z += speed * multiply_speed_2 * object_speed;
-        }
-        if (kd) {
-            //kanister.position.y -= speed * multiply_speed_1_kanister * object_speed;
-            //kanister.position.z += speed * multiply_speed_2 * object_speed;
-        }
+        kanister.position.y -= speed * multiply_speed_1_kanister * object_speed;
+        kanister.position.z += speed * multiply_speed_2 * object_speed;
         if (kanister.position.z > 50) {
             rand_position = Math.floor(Math.random() * 6) + 1;
             switch (rand_position) {
@@ -71,7 +62,5 @@ function Canister(scene, camera) {
                     break;
             }
         }
-        //kanister.position.y -= speed * multiply_speed_1_kanister * object_speed;
-        //kanister.position.z += speed * multiply_speed_2 * object_speed;
     }
 }

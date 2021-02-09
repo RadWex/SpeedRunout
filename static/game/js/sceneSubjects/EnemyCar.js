@@ -47,18 +47,6 @@ function EnemyCar(scene, camera) {
     var multiply_speed_1_kanister = 9.6,
         multiply_speed_2 = 15;
     this.update = function(time) {
-        ku = inputManager.keys.up.down;
-        kd = inputManager.keys.down.down;
-        kl = inputManager.keys.left.down;
-        kr = inputManager.keys.right.down;
-        if (ku) {
-            model2.position.y -= speed * multiply_speed_1_kanister * object_speed;
-            model2.position.z += speed * multiply_speed_2 * object_speed;
-        }
-        if (kd) {
-            model2.position.y -= speed * multiply_speed_1_kanister * object_speed;
-            model2.position.z += speed * multiply_speed_2 * object_speed;
-        }
         if (model2.position.z > 50) {
             rand_position = Math.floor(Math.random() * 6) + 1;
             model2.children[1].children[0].material.color.setHex(Math.random() * 0xffffff);
