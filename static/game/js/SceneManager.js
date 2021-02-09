@@ -21,6 +21,9 @@ function SceneManager(canvas) {
 
     function buildRender({ width, height }) {
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+
         const DPR = (window.devicePixelRatio) ? window.devicePixelRatio : 1;
         renderer.setPixelRatio(DPR);
         renderer.setSize(width, height);
@@ -44,33 +47,19 @@ function SceneManager(canvas) {
 
     function createSceneSubjects(scene) {
         const sceneSubjects = [
-            new KeyboardEvents(),
             new GeneralLights(scene),
             new PlayerCar(scene, camera),
-            new Road(scene)
+            new Road(scene),
+            new Ground(scene)
         ];
 
         return sceneSubjects;
     }
 
-    function extendObj(obj1, obj2) {
-        for (var key in obj2) {
-            if (obj2.hasOwnProperty(key)) {
-                obj1[key] = obj2[key];
-            }
-        }
-        return obj1;
-    }
-
-    var allSignals = {}
     this.update = function() {
         const elapsedTime = clock.getElapsedTime();
 
         for (let i = 0; i < sceneSubjects.length; i++) {
-            extendObj(allSignals, sceneSubjects[i].signals());
-        }
-        for (let i = 0; i < sceneSubjects.length; i++) {
-            sceneSubjects[i].slots(allSignals);
             sceneSubjects[i].update(elapsedTime);
         }
 

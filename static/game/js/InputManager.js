@@ -1,0 +1,69 @@
+class InputManager {
+    constructor() {
+        this.keys = {};
+        const keyMap = new Map();
+
+        const setKeyFromKeyCode = (keyCode, pressed) => {
+            const keyName = keyMap.get(keyCode);
+            if (!keyName) {
+                return;
+            }
+            setKey(keyName, pressed);
+        };
+
+        document.addEventListener('keydown', onDocumentKeyDown, false);
+        document.addEventListener('keyup', onDocumentKeyUp, false);
+
+        function onDocumentKeyDown(event) {
+            event = event || window.event;
+            var keycode = event.keyCode;
+            setKeyFromKeyCode(keycode, true)
+        };
+
+        function onDocumentKeyUp(event) {
+            event = event || window.event;
+            var keycode = event.keyCode;
+            setKeyFromKeyCode(keycode, false)
+
+        };
+
+        const setKey = (keyName, pressed) => {
+            const keyState = this.keys[keyName];
+            keyState.justPressed = pressed && !keyState.down;
+            keyState.down = pressed;
+        };
+
+        const addKey = (keyCode, name) => {
+            this.keys[name] = { down: false, justPressed: false };
+            keyMap.set(keyCode, name);
+        };
+
+
+        addKey(37, 'left');
+        addKey(39, 'right');
+        addKey(38, 'up');
+        addKey(40, 'down');
+        addKey(90, 'a');
+        addKey(88, 'b');
+    }
+    update() {
+        for (const keyState of Object.values(this.keys)) {
+            if (speed > 0.16)
+                speed = 0.16;
+            if (inputManager.keys.up.down) {
+                speed += 0.0001;
+            }
+            if (inputManager.keys.down.down) {
+                if (speed - 0.001 > 0)
+                    speed -= 0.001;
+                else
+                    speed = 0;
+            }
+            if (speed && speed > 0 && !inputManager.keys.up.down && !inputManager.keys.down.down)
+                speed -= 0.00001;
+            if (keyState.justPressed) {
+                keyState.justPressed = false;
+            }
+        }
+    }
+}
