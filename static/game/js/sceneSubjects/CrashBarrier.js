@@ -46,8 +46,6 @@ function CrashBarrier(scene) {
         cube[i].rotation.set(2.2, 0, 0);
         cube[i].position.y = 10 * i;
         cube[i].castShadow = true
-        console.log(cube[i].position.z);
-        console.log(cube[i].position.y);
         scene.add(cube[i]);
     }
 
