@@ -19,21 +19,40 @@ function PlayerCar(scene, camera) {
     });
 
     this.update = function(time) {
-        if (inputManager.keys.up.down)
+        ku = inputManager.keys.up.down;
+        kd = inputManager.keys.down.down;
+        kl = inputManager.keys.left.down;
+        kr = inputManager.keys.right.down;
+        if (ku)
             model.rotation.x = 0.62;
         else
             model.rotation.x = 0.6;
-        if (inputManager.keys.down.down)
+        if (kd)
             model.rotation.x = 0.58;
-        else if (!inputManager.keys.up.down)
+        else if (!ku)
             model.rotation.x = 0.6;
-        if (inputManager.keys.left.down && model.position.x > -27) {
+        if (kl && model.position.x > -27) {
             model.position.x -= speed * 5;
             camera.position.x -= speed * 5;
+            model.rotation.y += speed * 0.5;
+            if (model.rotation.y > 0.15)
+                model.rotation.y = 0.15;
         }
-        if (inputManager.keys.right.down && model.position.x < 27) {
+        if (kr && model.position.x < 27) {
             model.position.x += speed * 5;
             camera.position.x += speed * 5;
+            model.rotation.y -= speed * 0.5;
+            if (model.rotation.y < -0.15)
+                model.rotation.y = -0.15;
+        }
+        if (model.rotation.y > 0 && !kr && !kl) {
+            model.rotation.y -= speed * 0.5;
+        }
+        if (model.rotation.y < 0 && !kl && !kr) {
+            model.rotation.y += speed * 0.5;
+        }
+        if (!kl && !kr) {
+            model.rotation.y = 0;
         }
     }
 

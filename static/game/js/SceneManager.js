@@ -49,6 +49,7 @@ function SceneManager(canvas) {
         const sceneSubjects = [
             new GeneralLights(scene),
             new PlayerCar(scene, camera),
+            new EnemyCar(scene),
             new Road(scene),
             new Ground(scene)
         ];
