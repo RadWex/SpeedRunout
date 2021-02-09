@@ -27,7 +27,7 @@ function SceneManager(canvas) {
         const DPR = (window.devicePixelRatio) ? window.devicePixelRatio : 1;
         renderer.setPixelRatio(DPR);
         renderer.setSize(width, height);
-        renderer.setClearColor(0x008000);
+        renderer.setClearColor(0xbd7d4f);
 
         renderer.gammaInput = true;
         renderer.gammaOutput = true;
@@ -50,6 +50,7 @@ function SceneManager(canvas) {
             new GeneralLights(scene),
             new PlayerCar(scene, camera),
             new EnemyCar(scene),
+            new Canister(scene),
             new Road(scene),
             new Ground(scene)
         ];

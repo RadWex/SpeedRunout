@@ -8,15 +8,15 @@ function GeneralLights(scene) {
     light.castShadow = true;
     scene.add(light);
 
-    light.shadow.mapSize.width = 2048; // default
-    light.shadow.mapSize.height = 2048; // default
+    light.shadow.mapSize.width = 4096; // default
+    light.shadow.mapSize.height = 4096; // default
     light.shadow.camera.near = 0.5; // default
     light.shadow.camera.far = 500; // default
     const d = 100;
 
     light.shadow.camera.left = -d;
     light.shadow.camera.right = d;
-    light.shadow.camera.top = d;
+    light.shadow.camera.top = d + 100;
     light.shadow.camera.bottom = -d;
 
     const ambient = new THREE.AmbientLight(0x404040, 2); // soft white light

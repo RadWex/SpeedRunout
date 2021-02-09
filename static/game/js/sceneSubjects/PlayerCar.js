@@ -11,7 +11,7 @@ function PlayerCar(scene, camera) {
         material = new THREE.MeshStandardMaterial({ color: 0xff0000 })
         material.metalness = 1
         model.children[1].children[0].material = material
-        model.position.set(0, 0, 5);
+        model.position.set(0, 0, 4);
         model.scale.x = model.scale.y = model.scale.z = 0.07;
         model.rotation.x = 0.6;
         model.castShadow = true; //default is false
