@@ -44,6 +44,7 @@ function SceneManager(canvas) {
 
     function createSceneSubjects(scene) {
         const sceneSubjects = [
+            new KeyboardEvents(),
             new GeneralLights(scene),
             new PlayerCar(scene, camera),
             new Road(scene)
@@ -52,11 +53,26 @@ function SceneManager(canvas) {
         return sceneSubjects;
     }
 
+    function extendObj(obj1, obj2) {
+        for (var key in obj2) {
+            if (obj2.hasOwnProperty(key)) {
+                obj1[key] = obj2[key];
+            }
+        }
+        return obj1;
+    }
+
+    var allSignals = {}
     this.update = function() {
         const elapsedTime = clock.getElapsedTime();
 
-        for (let i = 0; i < sceneSubjects.length; i++)
+        for (let i = 0; i < sceneSubjects.length; i++) {
+            extendObj(allSignals, sceneSubjects[i].signals());
+        }
+        for (let i = 0; i < sceneSubjects.length; i++) {
+            sceneSubjects[i].slots(allSignals);
             sceneSubjects[i].update(elapsedTime);
+        }
 
         renderer.render(scene, camera);
     }

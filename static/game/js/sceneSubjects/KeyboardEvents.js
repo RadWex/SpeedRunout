@@ -1,4 +1,4 @@
-function PlayerCar(scene, camera) {
+function KeyboardEvents() {
     document.addEventListener('keydown', onDocumentKeyDown, false);
     document.addEventListener('keyup', onDocumentKeyUp, false);
 
@@ -47,52 +47,32 @@ function PlayerCar(scene, camera) {
         }
     }
 
-    const radius = 2;
-    var loader = new THREE.ColladaLoader();
-
-    loader.load(modelsURL + "car.DAE", function(collada) {
-        model = collada.scene;
-        model.position.set(0, 0, 5);
-        model.scale.x = model.scale.y = model.scale.z = 0.07;
-        model.rotation.x = 0.6;
-        scene.add(model);
-    });
-
-    var speed = 0;
-
-    this.slots = function(allSignals) {
-        for (var key in allSignals) {
-            if (allSignals.hasOwnProperty(key)) {
-                if (key == "variable.speed")
-                    speed = allSignals[key];
-                else if (key == "variable.speed")
-                    speed = allSignals[key];
-            }
-        }
-    }
-
-    this.update = function(time) {
-        if (ku)
-            model.rotation.x = 0.62;
-        else
-            model.rotation.x = 0.6;
-        if (kd)
-            model.rotation.x = 0.58;
-        else if (!ku)
-            model.rotation.x = 0.6;
-        if (kl && model.position.x > -27) {
-            model.position.x -= speed * 5;
-            camera.position.x -= speed * 5;
-        }
-        if (kr && model.position.x < 27) {
-            model.position.x += speed * 5;
-            camera.position.x += speed * 5;
-        }
-    }
+    var speed = 0
 
     var signalsDic = {};
     this.signals = function() {
+        signalsDic["keyboard.up"] = ku;
+        signalsDic["keyboard.down"] = kd;
+        signalsDic["keyboard.laft"] = kl;
+        signalsDic["keyboard.right"] = kr;
+        signalsDic["variable.speed"] = speed;
         return signalsDic
     }
+    this.slots = function(allSignals) {}
 
+    this.update = function(time) {
+        if (ku) {
+            speed += 0.001;
+        }
+        if (kd) {
+            if (speed - 0.01 > 0)
+                speed -= 0.01;
+            else
+                speed = 0;
+        }
+        if (speed && speed > 0 && !ku && !kd)
+            speed -= 0.0001;
+        if (speed > 0.16)
+            speed = 0.16;
+    }
 }

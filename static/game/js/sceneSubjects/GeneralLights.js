@@ -5,4 +5,11 @@ function GeneralLights(scene) {
     scene.add(light);
 
     this.update = function(time) {}
+
+    var signalsDic = {};
+    this.signals = function() {
+        return signalsDic
+    }
+
+    this.slots = function(allSignals) {}
 }

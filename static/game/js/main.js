@@ -25,5 +25,5 @@ function render() {
     setTimeout(function() {
         requestAnimationFrame(render);
         sceneManager.update();
-    }, 1000 / 120);
+    }, 1000 / 60);
 }
