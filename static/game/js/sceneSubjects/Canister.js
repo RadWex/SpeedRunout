@@ -1,7 +1,7 @@
 function Canister(scene) {
     var loader = new THREE.ColladaLoader();
 
-    loader.load(modelsURL + "canister.dae", function(collada) {
+    loader.load(modelsURL + "canister.DAE", function(collada) {
         kanister = collada.scene;
         rand_position = Math.floor(Math.random() * 6) + 1;;
         switch (rand_position) {
@@ -33,10 +33,6 @@ function Canister(scene) {
     var multiply_speed_1_kanister = 9.6,
         multiply_speed_2 = 15;
     this.update = function(time) {
-        ku = inputManager.keys.up.down;
-        kd = inputManager.keys.down.down;
-        kl = inputManager.keys.left.down;
-        kr = inputManager.keys.right.down;
         kanister.position.y -= speed * multiply_speed_1_kanister * object_speed;
         kanister.position.z += speed * multiply_speed_2 * object_speed;
         if (kanister.position.z > 50) {
