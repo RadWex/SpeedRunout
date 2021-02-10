@@ -19,8 +19,9 @@ class GamePageView(TemplateView):
     # @method_decorator(login_required)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = self.request.user.id
-        score = Score.objects.filter(user=user).first()
-        score = score.score
-        context["score"] = score
+        if self.request.user.is_authenticated:
+            user = self.request.user.id
+            score = Score.objects.filter(user=user).first()
+            score = score.score
+            context["score"] = score
         return context

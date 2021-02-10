@@ -1,4 +1,4 @@
-{% load static %} {% if user.is_authenticated %}
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -44,6 +44,7 @@
         >
           <b id="score">000000</b>
         </h1>
+        {% if user.is_authenticated %}
         <h4
           style="
             color: #6495ed;
@@ -54,6 +55,7 @@
         >
           {{score}}
         </h4>
+        {%endif%}
       </div>
       <canvas id="canvas"></canvas>
     </div>
@@ -85,6 +87,3 @@
     <script src="{% static 'game/js/main.js' %}"></script>
   </body>
 </html>
-{% else %}
-<h1>Nie zalogowany</h1>
-{% endif %}
