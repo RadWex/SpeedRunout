@@ -42,6 +42,7 @@ function EnemyCar(scene, camera) {
         scene.add(model2);
     });
 
+
     this.colision = function() {
         if ((model2.position.x - model.position.x < 5.6 && model.position.x - model2.position.x < 5.6) && model2.position.z - model.position.z < 8 && model2.position.y - model.position.y < 8) {
             //end_game();
@@ -68,9 +69,14 @@ function EnemyCar(scene, camera) {
             }
             model.position.set(0, 0, 5);
             camera.position.x = 0;
+            postTo('', Math.round(score).toString().padStart(6, "0"));
+            var best_score = document.getElementById("best_score");
+            if (score > best_score)
+                best_score.innerHTML(Math.round(score).toString());
             ile_karnistrow = 0;
             score = 0;
             speed = 0;
+
         }
     }
 

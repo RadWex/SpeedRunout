@@ -7,6 +7,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Score
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import ensure_csrf_cookie
+import json
 
 
 class HomePageView(TemplateView):
@@ -24,4 +27,15 @@ class GamePageView(TemplateView):
             score = Score.objects.filter(user=user).first()
             score = score.score
             context["score"] = score
+        return context
+
+    # @login_required
+    def post(self, request, *args, **kwargs):
+        context = super(GamePageView, self).get(request, *args, **kwargs)
+        if self.request.user.is_authenticated:
+            user = self.request.user.id
+            score = Score.objects.filter(user=user).first()
+            if int(request.body) > score.score:
+                score.score = int(request.body)
+                score.save()
         return context

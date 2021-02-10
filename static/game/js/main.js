@@ -14,6 +14,29 @@ const inputManager = new InputManager();
 
 bindEventListeners();
 
+var csrfcookie = function() {
+    var cookieValue = null,
+        name = 'csrftoken';
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+};
+
+function postTo(url, query) {
+    var request = (XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject());
+    request.open('POST', url, true);
+    request.setRequestHeader('X-CSRFToken', csrfcookie());
+    request.send(query);
+}
+
 function bindEventListeners() {
     window.onresize = resizeCanvas;
     resizeCanvas();
