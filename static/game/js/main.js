@@ -4,13 +4,15 @@ const globals = {
 };
 
 var speed = 0;
+var score = 0.0;
+var actual_score = document.getElementById("score")
+actual_score.innerHTML = "000000"
 const canvas = document.getElementById("canvas");
 
 const sceneManager = new SceneManager(canvas);
 const inputManager = new InputManager();
 
 bindEventListeners();
-requestAnimationFrame(render);
 
 function bindEventListeners() {
     window.onresize = resizeCanvas;
@@ -29,13 +31,13 @@ function resizeCanvas() {
 
 let then = 0;
 
-
 function render(now) {
     globals.time = now * 0.001;
     globals.deltaTime = Math.min(globals.time - then, 1 / 20);
     then = globals.time;
-
     requestAnimationFrame(render);
-    inputManager.update();
     sceneManager.update();
+    inputManager.update();
+    sceneManager.render();
 }
+requestAnimationFrame(render);

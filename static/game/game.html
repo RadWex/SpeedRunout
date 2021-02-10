@@ -29,8 +29,34 @@
   </head>
 
   <body>
-    <canvas id="canvas"></canvas>
-
+    <div class="container_div" style="position: relative">
+      <div
+        class="hover_div"
+        style="position: absolute; margin: 10px; display: block; z-index: 9999"
+      >
+        <h1
+          style="
+            color: mediumSeaGreen;
+            margin-bottom: 0;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+              1px 1px 0 #000;
+          "
+        >
+          <b id="score">000000</b>
+        </h1>
+        <h4
+          style="
+            color: #6495ed;
+            margin: 0;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+              1px 1px 0 #000;
+          "
+        >
+          {{score}}
+        </h4>
+      </div>
+      <canvas id="canvas"></canvas>
+    </div>
     <script>
       var modelsURL = "{% static 'game/models/' %}";
       var texturesURL = "{% static 'game/textures/' %}";

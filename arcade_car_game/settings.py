@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['speed-runout.herokuapp.com',
 # Application definition
 
 INSTALLED_APPS = [
+    'game',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

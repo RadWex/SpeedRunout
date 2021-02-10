@@ -47,20 +47,21 @@ class InputManager {
         addKey(88, 'b');
     }
     update() {
+        const { deltaTime } = globals;
         for (const keyState of Object.values(this.keys)) {
-            if (speed > 0.16)
-                speed = 0.16;
+            if (speed > 0.15)
+                speed = 0.15;
             if (inputManager.keys.up.down) {
-                speed += 0.0001;
+                speed += 0.01 * deltaTime;
             }
             if (inputManager.keys.down.down) {
-                if (speed - 0.001 > 0)
-                    speed -= 0.001;
+                if (speed - 0.1 * deltaTime > 0)
+                    speed -= 0.05 * deltaTime;
                 else
                     speed = 0;
             }
             if (speed && speed > 0 && !inputManager.keys.up.down && !inputManager.keys.down.down)
-                speed -= 0.00001;
+                speed -= 0.005 * deltaTime;
             if (keyState.justPressed) {
                 keyState.justPressed = false;
             }

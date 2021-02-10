@@ -57,6 +57,7 @@ function Canister(scene) {
                     break;
             }
             ile_karnistrow += 1;
+            score += 10;
         }
     }
 
@@ -89,6 +90,8 @@ function Canister(scene) {
                     break;
             }
         }
+        score += speed / 10;
+        actual_score.innerHTML = Math.round(score).toString().padStart(6, "0");
         this.colision();
     }
 }

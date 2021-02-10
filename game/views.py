@@ -6,6 +6,7 @@ from django.views.generic import CreateView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from .models import Score
 
 
 class HomePageView(TemplateView):
@@ -15,6 +16,11 @@ class HomePageView(TemplateView):
 class GamePageView(TemplateView):
     template_name = 'game/game.html'
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(GamePageView, self).dispatch(*args, **kwargs)
+    # @method_decorator(login_required)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user.id
+        score = Score.objects.filter(user=user).first()
+        score = score.score
+        context["score"] = score
+        return context

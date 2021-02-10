@@ -63,10 +63,11 @@ function SceneManager(canvas) {
         for (let i = 0; i < sceneSubjects.length; i++) {
             sceneSubjects[i].update(elapsedTime);
         }
-
-        renderer.render(scene, camera);
     }
 
+    this.render = function() {
+        renderer.render(scene, camera);
+    }
     this.onWindowResize = function() {
         const { width, height } = canvas;
 
