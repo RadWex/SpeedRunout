@@ -2,66 +2,62 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <title>Strona główna</title>
     <link rel="stylesheet" href="{% static 'main_page/menu_bar.css' %}" />
     <link rel="stylesheet" href="{% static 'main_page/index.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
     <header>
-      <nav>
-        <a href="{% url 'index' %}">
-          <img src="{% static 'images/logo.png' %}" />
-        </a>
-        <div class="search-container"></div>
-        {% if user.is_authenticated %}
-        <form action="{% url 'game' %}">
-          <button>Graj</button>
-        </form>
-        <form action="{% url 'logout' %}">
-          <button>Wyloguj</button>
-        </form>
-        {% else %}
-        <form action="{% url 'login' %}">
-          <button>Logowanie</button>
-        </form>
-        {% endif %}
-      </nav>
+        <nav>
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/logo.png' %}" />
+            </a>
+            <div class="search-container"></div>
+            {% if user.is_authenticated %}
+            <form action="{% url 'game' %}">
+                <button>Graj</button>
+            </form>
+            <form action="{% url 'logout' %}">
+                <button>Wyloguj</button>
+            </form>
+            {% else %}
+            <form action="{% url 'login' %}">
+                <button>Logowanie</button>
+            </form>
+            {% endif %}
+        </nav>
     </header>
 
-    <div
-      class="parallax"
-      style="background-image: url('{% static 'images/tul.jpg' %}')"
-    >
-      <div class="central-container">
-        <i class="fa fa-quote-left" style="font-size: 70px"></i>
-        <p>
-          Wyciśnij ze swojego supersamochodu jak najwięcej i zostaw konkurencję
-          daleko w tyle.
-        </p>
-        <br />
-        <h5>
-          {% if user.is_authenticated %}
-          <form action="{% url 'game' %}">
-            <button>Graj</button>
-          </form>
-          {% else %}
-          <form action="{% url 'login' %}">
-            <button>Graj</button>
-          </form>
-          {% endif %}
-        </h5>
-      </div>
+    <div class="parallax" style="background-image: url('{% static 'images/tul.jpg' %}')">
+        <div class="central-container">
+            <i class="fa fa-quote-left" style="font-size: 70px"></i>
+            <p>
+                Wyciśnij ze swojego supersamochodu jak najwięcej i zostaw konkurencję daleko w tyle.
+            </p>
+            <br />
+            <h5>
+                {% if user.is_authenticated %}
+                <form action="{% url 'game' %}">
+                    <button>Graj</button>
+                </form>
+                {% else %}
+                <form action="{% url 'game' %}">
+                    <button>Graj</button>
+                </form>
+                {% endif %}
+            </h5>
+        </div>
     </div>
 
     <footer>
-      <p>Copyright &copy; 2021 - Speed Runout</p>
+        <p>Copyright &copy; 2021 - Speed Runout</p>
     </footer>
-  </body>
+</body>
+
 </html>
