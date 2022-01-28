@@ -5,8 +5,8 @@ const globals = {
 
 var speed = 0;
 var score = 0.0;
-var actual_score = document.getElementById("score")
-actual_score.innerHTML = "000000"
+var actual_score = document.getElementById("score");
+actual_score.innerHTML = "000000";
 const canvas = document.getElementById("canvas");
 
 const sceneManager = new SceneManager(canvas);

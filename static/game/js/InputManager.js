@@ -17,13 +17,13 @@ class InputManager {
         function onDocumentKeyDown(event) {
             event = event || window.event;
             var keycode = event.keyCode;
-            setKeyFromKeyCode(keycode, true)
+            setKeyFromKeyCode(keycode, true);
         };
 
         function onDocumentKeyUp(event) {
             event = event || window.event;
             var keycode = event.keyCode;
-            setKeyFromKeyCode(keycode, false)
+            setKeyFromKeyCode(keycode, false);
 
         };
 
@@ -38,13 +38,14 @@ class InputManager {
             keyMap.set(keyCode, name);
         };
 
-
         addKey(37, 'left');
+        addKey(65, 'left');
         addKey(39, 'right');
+        addKey(68, 'right');
         addKey(38, 'up');
+        addKey(87, 'up');
         addKey(40, 'down');
-        addKey(90, 'a');
-        addKey(88, 'b');
+        addKey(83, 'down');
     }
     update() {
         const { deltaTime } = globals;
