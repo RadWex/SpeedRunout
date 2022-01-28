@@ -71,12 +71,13 @@ function EnemyCar(scene, camera) {
             camera.position.x = 0;
             postTo('', Math.round(score).toString().padStart(6, "0"));
             var best_score = document.getElementById("best_score");
-            if (score > best_score)
-                best_score.innerHTML(Math.round(score).toString());
+            if (best_score != null) {
+                if (score > best_score)
+                    best_score.innerHTML(Math.round(score).toString());
+            }
             ile_karnistrow = 0;
             score = 0;
             speed = 0;
-
         }
     }
 
