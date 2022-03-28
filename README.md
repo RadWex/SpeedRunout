@@ -1,6 +1,6 @@
 # SpeedRunout
 
-Arcade 3d car game in browswer.
+Arcade 3d car game in browser.
 
 ![](preview.gif)
 
@@ -31,7 +31,7 @@ python -m venv <env-name>
 ### Environment activation on Linux
 
 ```
-source <env-name>\bin\activate
+source <env-name>/bin/activate
 ```
 
 ### Install dependencies
