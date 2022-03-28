@@ -1,74 +1,61 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>Racing game</title>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-size: 0;
-      }
-      canvas {
-        width: 100%;
-        height: 100%;
-      }
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .sortable-handler {
+            touch-action: none;
+        }
     </style>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="{% static 'game/css/materialize.min.css' %}"
-      media="screen,projection"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="{% static 'game/css/materialize.min.css' %}" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container_div" style="position: relative">
-      <div
-        class="hover_div"
-        style="position: absolute; margin: 10px; display: block; z-index: 9999"
-      >
-        <h1
-          style="
+        <div class="hover_div" style="position: absolute; margin: 10px; display: block; z-index: 9999">
+            <h1 style="
             color: mediumSeaGreen;
             margin-bottom: 0;
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
               1px 1px 0 #000;
-          "
-        >
-          <b id="score">000000</b>
-        </h1>
-        {% if user.is_authenticated %}
-        <h4
-          id="best_score"
-          style="
+          ">
+                <b id="score">000000</b>
+            </h1>
+            {% if user.is_authenticated %}
+            <h4 id="best_score" style="
             color: #6495ed;
             margin: 0;
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
               1px 1px 0 #000;
-          "
-        >
-          {{score}}
-        </h4>
-        {%endif%}
-      </div>
-      <canvas id="canvas"></canvas>
+          ">
+                {{score}}
+            </h4>
+            {%endif%}
+        </div>
+        <canvas id="canvas"></canvas>
     </div>
     <script>
-      var modelsURL = "{% static 'game/models/' %}";
-      var texturesURL = "{% static 'game/textures/' %}";
+        var modelsURL = "{% static 'game/models/' %}";
+        var texturesURL = "{% static 'game/textures/' %}";
     </script>
 
-    <script
-      type="text/javascript"
-      src="{% static 'game/lib/materialize.min.js' %}"
-    ></script>
+    <script type="text/javascript" src="{% static 'game/lib/materialize.min.js' %}"></script>
     <script src="{% static 'game/lib/three.min.js' %}"></script>
     <script src="{% static 'game/lib/Animation.js' %}"></script>
     <script src="{% static 'game/lib/AnimationHandler.js' %}"></script>
@@ -86,5 +73,6 @@
 
     <script src="{% static 'game/js/SceneManager.js' %}"></script>
     <script src="{% static 'game/js/main.js' %}"></script>
-  </body>
+</body>
+
 </html>
