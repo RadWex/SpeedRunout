@@ -23,6 +23,9 @@ function PlayerCar(scene, camera) {
         kd = inputManager.keys.down.down;
         kl = inputManager.keys.left.down;
         kr = inputManager.keys.right.down;
+        touchX = inputManager.touchDeviateVal[0]
+        touchY = inputManager.touchDeviateVal[1]
+
         if (ku)
             model.rotation.x = 0.62;
         else
@@ -31,14 +34,14 @@ function PlayerCar(scene, camera) {
             model.rotation.x = 0.58;
         else if (!ku)
             model.rotation.x = 0.6;
-        if (kl && model.position.x > -27) {
+        if ((kl || touchX > 20) && model.position.x > -27) {
             model.position.x -= speed * 5;
             camera.position.x -= speed * 5;
             model.rotation.y += speed * 0.5;
             if (model.rotation.y > 0.15)
                 model.rotation.y = 0.15;
         }
-        if (kr && model.position.x < 27) {
+        if ((kr || touchX < -20) && model.position.x < 27) {
             model.position.x += speed * 5;
             camera.position.x += speed * 5;
             model.rotation.y -= speed * 0.5;
